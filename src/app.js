@@ -22,8 +22,13 @@ const show_current_msg = _ => {
 }
 
 const show_current = current_idx => {
-    network.focus(travel[current_idx], {animation:true});
-    network.setSelection({nodes: [travel[current_idx]]})
+    let current_scale = network.getScale();
+    
+    network.focus(travel[current_idx],{
+        scale: current_scale + current_idx * 0.1,
+        animation:true
+    });
+    network.setSelection({nodes: [travel[current_idx]]},{highlightEdges: false})
     show_current_msg();
 }
 
