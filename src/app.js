@@ -22,7 +22,7 @@ const show_current_msg = _ => {
 }
 
 const show_current = current_idx => {
-    let current_scale = network.getScale();
+    let current_scale = current_idx == 0? 1: network.getScale();
     
     network.focus(travel[current_idx],{
         scale: current_scale + current_idx * 0.1,
