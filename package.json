@@ -1,0 +1,23 @@
+{
+  "name": "traveling_networks",
+  "version": "1.0.0",
+  "description": "\"This project allows you to load a network visjs and travel the nodes in a certain order\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
+  },
+  "keywords": [
+    "visjs",
+    "network"
+  ],
+  "author": "Jonatan E. Duttweiler <jduttweiler@santafe.gov.ar>",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "vis-network": "^6.1.1"
+  }
+}
