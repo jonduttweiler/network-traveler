@@ -1,4 +1,9 @@
-require('./travel.js');
+//import fonts as well
+import '../css/font-awesome/font-awesome.min.css';
+import '../css/vis-network/vis-network.min.css';
+
+import './travel.js';
+
 const networkdata = require('../data/network.json');
 const vis = require('vis-network');
 
