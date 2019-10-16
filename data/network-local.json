@@ -1,0 +1,810 @@
+{
+   "nodes": [
+      {
+         "custom": {},
+         "x": -58,
+         "y": -250,
+         "id": "1",
+         "label": "Node 1",
+         "title": "Node 1",
+         "group": "alpha"
+      },
+      {
+         "custom": {},
+         "x": 96,
+         "y": 58,
+         "id": "2",
+         "label": "Node 2",
+         "title": "Node 2",
+         "group": "alpha"
+      },
+      {
+         "custom": {},
+         "x": -156,
+         "y": 222,
+         "id": "3",
+         "label": "Node 3",
+         "title": "Node 3",
+         "group": "alpha"
+      },
+      {
+         "custom": {},
+         "x": 76,
+         "y": -137,
+         "id": "4",
+         "label": "Node 4",
+         "title": "Node 4",
+         "group": "alpha"
+      },
+      {
+         "custom": {},
+         "x": -24,
+         "y": 134,
+         "id": "5",
+         "label": "Node 5",
+         "title": "Node 5",
+         "group": "beta"
+      },
+      {
+         "custom": {},
+         "x": -38,
+         "y": -391,
+         "id": "6",
+         "label": "Node 6",
+         "title": "Node 6",
+         "group": "beta"
+      },
+      {
+         "custom": {},
+         "x": 127,
+         "y": -11,
+         "id": "7",
+         "label": "Node 7",
+         "title": "Node 7",
+         "group": "beta"
+      },
+      {
+         "custom": {},
+         "x": 69,
+         "y": -301,
+         "id": "8",
+         "label": "Node 8",
+         "title": "Node 8",
+         "group": "gamma"
+      },
+      {
+         "custom": {},
+         "x": 213,
+         "y": -179,
+         "id": "9",
+         "label": "Node 9",
+         "title": "Node 9",
+         "group": "gamma"
+      },
+      {
+         "custom": {},
+         "x": -245,
+         "y": -308,
+         "id": "10",
+         "label": "Node 10",
+         "title": "Node 10",
+         "group": "delta"
+      },
+      {
+         "custom": {},
+         "x": -100,
+         "y": 18,
+         "id": "11",
+         "label": "Node 11",
+         "title": "Node 11",
+         "group": "eta"
+      },
+      {
+         "custom": {},
+         "x": -265,
+         "y": 310,
+         "id": "12",
+         "label": "Node 12",
+         "title": "Node 12",
+         "group": "epsilon"
+      },
+      {
+         "custom": {},
+         "x": -263,
+         "y": 128,
+         "id": "13",
+         "label": "Node 13",
+         "title": "Node 13",
+         "group": "dseta"
+      },
+      {
+         "custom": {},
+         "x": -82,
+         "y": 343,
+         "id": "14",
+         "label": "Node 14",
+         "title": "Node 14",
+         "group": "eta"
+      },
+      {
+         "custom": {},
+         "x": 81,
+         "y": 229,
+         "id": "15",
+         "label": "Node 15",
+         "title": "Node 15",
+         "group": "theta"
+      }
+   ],
+   "edges": [
+      {
+         "custom": {},
+         "from": "1",
+         "id": "e1",
+         "to": "6"
+      },
+      {
+         "custom": {},
+         "from": "2",
+         "id": "e4",
+         "to": "5"
+      },
+      {
+         "custom": {},
+         "from": "4",
+         "id": "e5",
+         "to": "7"
+      },
+      {
+         "custom": {},
+         "from": "3",
+         "id": "e7",
+         "to": "5"
+      },
+      {
+         "custom": {},
+         "from": "2",
+         "id": "e8",
+         "to": "7"
+      },
+      {
+         "custom": {},
+         "from": "5",
+         "id": "e9",
+         "to": "11"
+      },
+      {
+         "custom": {},
+         "from": "5",
+         "id": "e9_15",
+         "to": "15"
+      },
+      {
+         "custom": {},
+         "from": "1",
+         "id": "e11",
+         "to": "10"
+      },
+      {
+         "dashes": true,
+         "color": "#0D63FF",
+         "custom": {},
+         "width": 2,
+         "from": "3",
+         "id": "e_3_12",
+         "to": "12"
+      },
+      {
+         "color": "#0DFF94",
+         "custom": {},
+         "width": 3,
+         "from": "3",
+         "id": "e_3_13",
+         "to": "13"
+      },
+      {
+         "color": "#0C94E8",
+         "custom": {},
+         "width": 4,
+         "from": "3",
+         "id": "e_3_14",
+         "to": "14"
+      },
+      {
+         "color": "#E82A07",
+         "custom": {},
+         "width": 5,
+         "from": "1",
+         "id": "e2",
+         "to": "4"
+      },
+      {
+         "dashes": true,
+         "color": "#4B65FF",
+         "custom": {},
+         "width": 2,
+         "arrows": {
+            "to": true
+         },
+         "from": "9",
+         "id": "e10",
+         "to": "4"
+      },
+      {
+         "dashes": true,
+         "color": "#9D0CE8",
+         "custom": {},
+         "width": 2,
+         "arrows": "from",
+         "from": "1",
+         "id": "e6",
+         "to": "8"
+      },
+      {
+         "dashes": true,
+         "color": "#0CE85C",
+         "custom": {},
+         "length": 250,
+         "width": 2,
+         "arrows": "to",
+         "from": "2",
+         "id": "e3",
+         "to": "4",
+         "label": "e3"
+      },
+      {
+         "dashes": true,
+         "color": "#0CE85C",
+         "custom": {},
+         "length": 250,
+         "width": 2,
+         "arrows": "from;to",
+         "from": "2",
+         "id": "ec3",
+         "to": "4",
+         "label": "e3"
+      }
+   ],
+   "options": {
+      "physics": {
+         "repulsion": {
+            "springLength": 200,
+            "avoidOverlap": 0,
+            "centralGravity": 0.2,
+            "springConstant": 0.05,
+            "damping": 0.09,
+            "nodeDistance": 100
+         },
+         "stabilization": {
+            "fit": true,
+            "updateInterval": 50,
+            "onlyDynamicEdges": false,
+            "enabled": true,
+            "iterations": 1000
+         },
+         "timestep": 0.5,
+         "hierarchicalRepulsion": {
+            "springLength": 100,
+            "centralGravity": 0,
+            "springConstant": 0.01,
+            "damping": 0.09,
+            "nodeDistance": 120
+         },
+         "minVelocity": 0.75,
+         "maxVelocity": 50,
+         "barnesHut": {
+            "springLength": 95,
+            "avoidOverlap": 0,
+            "gravitationalConstant": -2000,
+            "centralGravity": 0.3,
+            "springConstant": 0.04,
+            "damping": 0.09,
+            "theta": 0.5
+         },
+         "adaptiveTimestep": true,
+         "enabled": true,
+         "forceAtlas2Based": {
+            "springLength": 100,
+            "avoidOverlap": 0,
+            "gravitationalConstant": -50,
+            "centralGravity": 0.01,
+            "springConstant": 0.08,
+            "damping": 0.4,
+            "theta": 0.5
+         },
+         "solver": "barnesHut"
+      },
+      "groups": {
+         "epsilon": {
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Emoji_u263a.svg/1200px-Emoji_u263a.svg.png",
+            "size": 15,
+            "shape": "image",
+            "custom": {}
+         },
+         "eta": {
+            "image": "https://ih1.redbubble.net/image.121990369.1636/aps,650x642,small,transparent-pad,750x1000,f8f8f8.u3.jpg",
+            "size": 15,
+            "shape": "image",
+            "custom": {}
+         },
+         "dseta": {
+            "image": "https://www.reasonwhy.es/sites/default/files/emoji_influencers.jpg",
+            "size": 15,
+            "shape": "image",
+            "custom": {}
+         },
+         "alpha": {
+            "size": 30,
+            "shape": "icon",
+            "custom": {},
+            "icon": {
+               "face": "'FontAwesome'",
+               "code": "",
+               "size": 50,
+               "color": "#3299FF"
+            }
+         },
+         "delta": {
+            "image": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "shape": "image",
+            "color": "#000",
+            "size": 30,
+            "mass": 5
+         },
+         "theta": {
+            "color": {
+               "border": "#2B7CE9",
+               "highlight": {
+                  "border": "#2B7CE9",
+                  "background": "#D2E5FF"
+               },
+               "hover": {
+                  "border": "#2B7CE9",
+                  "background": "#D2E5FF"
+               },
+               "background": "#97C2FC"
+            }
+         },
+         "beta": {
+            "size": 15,
+            "shape": "diamond",
+            "color": {
+               "border": "#12801B",
+               "highlight": {
+                  "border": "#12803C",
+                  "background": "#24FF78"
+               },
+               "background": "#70FF7C"
+            },
+            "custom": {}
+         },
+         "gamma": {
+            "size": 13,
+            "shape": "icon",
+            "custom": {},
+            "icon": {
+               "face": "'FontAwesome'",
+               "code": "",
+               "size": 50,
+               "color": "#E84333"
+            }
+         }
+      },
+      "manipulation": {
+         "editEdge": true,
+         "locales": {
+            "de": {
+               "addDescription": "Klicke auf eine freie Stelle, um einen neuen Knoten zu plazieren.",
+               "addNode": "Knoten hinzufügen",
+               "edit": "Editieren",
+               "deleteClusterError": "Cluster können nicht gelöscht werden.",
+               "back": "Zurück",
+               "del": "Lösche Auswahl",
+               "editClusterError": "Cluster können nicht editiert werden.",
+               "editEdge": "Kante editieren",
+               "createEdgeError": "Es ist nicht möglich, Kanten mit Clustern zu verbinden.",
+               "editNode": "Knoten editieren",
+               "editEdgeDescription": "Klicke auf die Verbindungspunkte und ziehe diese auf einen Knoten, um sie zu verbinden.",
+               "addEdge": "Kante hinzufügen",
+               "edgeDescription": "Klicke auf einen Knoten und ziehe die Kante zu einem anderen Knoten, um diese zu verbinden."
+            },
+            "it_IT": {
+               "addDescription": "Clicca per aggiungere un nuovo nodo",
+               "addNode": "Aggiungi un nodo",
+               "edit": "Modifica",
+               "deleteClusterError": "I cluster non possono essere cancellati",
+               "back": "Indietro",
+               "del": "Cancella la selezione",
+               "editClusterError": "I clusters non possono essere modificati.",
+               "editEdge": "Modifica il vertice",
+               "createEdgeError": "Non si possono collegare vertici ad un cluster",
+               "editNode": "Modifica il nodo",
+               "editEdgeDescription": "Clicca sui Punti di controllo e trascinali ad un nodo per connetterli.",
+               "addEdge": "Aggiungi un vertice",
+               "edgeDescription": "Clicca su un nodo e trascinalo ad un altro nodo per connetterli."
+            },
+            "ru_RU": {
+               "addDescription": "Кликните в свободное место, чтобы добавить новый узел.",
+               "addNode": "Добавить узел",
+               "edit": "Редактировать",
+               "deleteClusterError": "Кластеры не могут быть удалены",
+               "back": "Назад",
+               "del": "Удалить выбранное",
+               "editClusterError": "Кластеры недоступны для редактирования.",
+               "editEdge": "Редактировать ребро",
+               "createEdgeError": "Невозможно соединить ребра в кластер.",
+               "editNode": "Редактировать узел",
+               "editEdgeDescription": "Кликните на контрольные точки и перетащите их в узел, чтобы подключиться к нему.",
+               "addEdge": "Добавить ребро",
+               "edgeDescription": "Кликните на узел и протяните ребро к другому узлу, чтобы соединить их."
+            },
+            "ru": {
+               "addDescription": "Кликните в свободное место, чтобы добавить новый узел.",
+               "addNode": "Добавить узел",
+               "edit": "Редактировать",
+               "deleteClusterError": "Кластеры не могут быть удалены",
+               "back": "Назад",
+               "del": "Удалить выбранное",
+               "editClusterError": "Кластеры недоступны для редактирования.",
+               "editEdge": "Редактировать ребро",
+               "createEdgeError": "Невозможно соединить ребра в кластер.",
+               "editNode": "Редактировать узел",
+               "editEdgeDescription": "Кликните на контрольные точки и перетащите их в узел, чтобы подключиться к нему.",
+               "addEdge": "Добавить ребро",
+               "edgeDescription": "Кликните на узел и протяните ребро к другому узлу, чтобы соединить их."
+            },
+            "pt_BR": {
+               "addDescription": "Clique em um espaço em branco para adicionar um novo nó",
+               "addNode": "Adicionar nó",
+               "edit": "Editar",
+               "deleteClusterError": "Clusters não puderam ser removidos.",
+               "back": "Voltar",
+               "del": "Remover selecionado",
+               "editClusterError": "Clusters não puderam ser editados.",
+               "editEdge": "Editar aresta",
+               "createEdgeError": "Não foi possível linkar arestas a um cluster.",
+               "editNode": "Editar nó",
+               "editEdgeDescription": "Clique nos pontos de controle e os arraste para um nó para conectá-los",
+               "addEdge": "Adicionar aresta",
+               "edgeDescription": "Clique em um nó e arraste a aresta até outro nó para conectá-los"
+            },
+            "pt_br": {
+               "addDescription": "Clique em um espaço em branco para adicionar um novo nó",
+               "addNode": "Adicionar nó",
+               "edit": "Editar",
+               "deleteClusterError": "Clusters não puderam ser removidos.",
+               "back": "Voltar",
+               "del": "Remover selecionado",
+               "editClusterError": "Clusters não puderam ser editados.",
+               "editEdge": "Editar aresta",
+               "createEdgeError": "Não foi possível linkar arestas a um cluster.",
+               "editNode": "Editar nó",
+               "editEdgeDescription": "Clique nos pontos de controle e os arraste para um nó para conectá-los",
+               "addEdge": "Adicionar aresta",
+               "edgeDescription": "Clique em um nó e arraste a aresta até outro nó para conectá-los"
+            },
+            "fr": {
+               "addDescription": "Cliquez dans un endroit vide pour placer un noeud.",
+               "addNode": "Ajouter un noeud",
+               "edit": "Editer",
+               "deleteClusterError": "Les clusters ne peuvent pas être éffacés.",
+               "back": "Retour",
+               "del": "Effacer la selection",
+               "editClusterError": "Les clusters ne peuvent pas être édites.",
+               "editEdge": "Editer le lien",
+               "createEdgeError": "Impossible de créer un lien vers un cluster.",
+               "editNode": "Editer le noeud",
+               "editEdgeDescription": "Cliquez sur les points de contrôle et glissez-les pour connecter un noeud.",
+               "addEdge": "Ajouter un lien",
+               "edgeDescription": "Cliquez sur un noeud et glissez le lien vers un autre noeud pour les connecter."
+            },
+            "fr_FR": {
+               "addDescription": "Cliquez dans un endroit vide pour placer un noeud.",
+               "addNode": "Ajouter un noeud",
+               "edit": "Editer",
+               "deleteClusterError": "Les clusters ne peuvent pas être éffacés.",
+               "back": "Retour",
+               "del": "Effacer la selection",
+               "editClusterError": "Les clusters ne peuvent pas être édites.",
+               "editEdge": "Editer le lien",
+               "createEdgeError": "Impossible de créer un lien vers un cluster.",
+               "editNode": "Editer le noeud",
+               "editEdgeDescription": "Cliquez sur les points de contrôle et glissez-les pour connecter un noeud.",
+               "addEdge": "Ajouter un lien",
+               "edgeDescription": "Cliquez sur un noeud et glissez le lien vers un autre noeud pour les connecter."
+            },
+            "cs_CZ": {
+               "addDescription": "Kluknutím do prázdného prostoru můžete přidat nový vrchol.",
+               "addNode": "Přidat vrchol",
+               "edit": "Upravit",
+               "deleteClusterError": "Nelze mazat shluky.",
+               "back": "Zpět",
+               "del": "Smazat výběr",
+               "editClusterError": "Nelze upravovat shluky.",
+               "editEdge": "Upravit hranu",
+               "createEdgeError": "Nelze připojit hranu ke shluku.",
+               "editNode": "Upravit vrchol",
+               "editEdgeDescription": "Přetažením kontrolního vrcholu hrany ji můžete připojit k jinému vrcholu.",
+               "addEdge": "Přidat hranu",
+               "edgeDescription": "Přetažením z jednoho vrcholu do druhého můžete spojit tyto vrcholy novou hranou."
+            },
+            "de_DE": {
+               "addDescription": "Klicke auf eine freie Stelle, um einen neuen Knoten zu plazieren.",
+               "addNode": "Knoten hinzufügen",
+               "edit": "Editieren",
+               "deleteClusterError": "Cluster können nicht gelöscht werden.",
+               "back": "Zurück",
+               "del": "Lösche Auswahl",
+               "editClusterError": "Cluster können nicht editiert werden.",
+               "editEdge": "Kante editieren",
+               "createEdgeError": "Es ist nicht möglich, Kanten mit Clustern zu verbinden.",
+               "editNode": "Knoten editieren",
+               "editEdgeDescription": "Klicke auf die Verbindungspunkte und ziehe diese auf einen Knoten, um sie zu verbinden.",
+               "addEdge": "Kante hinzufügen",
+               "edgeDescription": "Klicke auf einen Knoten und ziehe die Kante zu einem anderen Knoten, um diese zu verbinden."
+            },
+            "uk": {
+               "addDescription": "Kлікніть на вільне місце, щоб додати новий вузол.",
+               "addNode": "Додати вузол",
+               "edit": "Редагувати",
+               "deleteClusterError": "Групи не можуть бути видалені.",
+               "back": "Назад",
+               "del": "Видалити обране",
+               "editClusterError": "Групи недоступні для редагування.",
+               "editEdge": "Редагувати край",
+               "createEdgeError": "Не можливо об'єднати краї в групу.",
+               "editNode": "Редагувати вузол",
+               "editEdgeDescription": "Клікніть на контрольні точки і перетягніть їх у вузол, щоб підключитися до нього.",
+               "addEdge": "Додати край",
+               "edgeDescription": "Клікніть на вузол і перетягніть край до іншого вузла, щоб їх з'єднати."
+            },
+            "es_ES": {
+               "addDescription": "Haga clic en un lugar vacío para colocar un nuevo nodo.",
+               "addNode": "Añadir nodo",
+               "edit": "Editar",
+               "deleteClusterError": "No es posible eliminar grupos.",
+               "back": "Atrás",
+               "del": "Eliminar selección",
+               "editClusterError": "No es posible editar grupos.",
+               "editEdge": "Editar arista",
+               "createEdgeError": "No se puede conectar una arista a un grupo.",
+               "editNode": "Editar nodo",
+               "editEdgeDescription": "Haga clic en un punto de control y arrastrelo a un nodo para conectarlo.",
+               "addEdge": "Añadir arista",
+               "edgeDescription": "Haga clic en un nodo y arrastre la arista hacia otro nodo para conectarlos."
+            },
+            "nl_NL": {
+               "addDescription": "Klik op een leeg gebied om een nieuwe node te maken.",
+               "addNode": "Node toevoegen",
+               "edit": "Wijzigen",
+               "deleteClusterError": "Clusters kunnen niet worden verwijderd.",
+               "back": "Terug",
+               "del": "Selectie verwijderen",
+               "editClusterError": "Clusters kunnen niet worden aangepast.",
+               "editEdge": "Link wijzigen",
+               "createEdgeError": "Kan geen link maken naar een cluster.",
+               "editNode": "Node wijzigen",
+               "editEdgeDescription": "Klik op de verbindingspunten en sleep ze naar een node om daarmee te verbinden.",
+               "addEdge": "Link toevoegen",
+               "edgeDescription": "Klik op een node en sleep de link naar een andere node om ze te verbinden."
+            },
+            "nl_BE": {
+               "addDescription": "Klik op een leeg gebied om een nieuwe node te maken.",
+               "addNode": "Node toevoegen",
+               "edit": "Wijzigen",
+               "deleteClusterError": "Clusters kunnen niet worden verwijderd.",
+               "back": "Terug",
+               "del": "Selectie verwijderen",
+               "editClusterError": "Clusters kunnen niet worden aangepast.",
+               "editEdge": "Link wijzigen",
+               "createEdgeError": "Kan geen link maken naar een cluster.",
+               "editNode": "Node wijzigen",
+               "editEdgeDescription": "Klik op de verbindingspunten en sleep ze naar een node om daarmee te verbinden.",
+               "addEdge": "Link toevoegen",
+               "edgeDescription": "Klik op een node en sleep de link naar een andere node om ze te verbinden."
+            },
+            "pt-br": {
+               "addDescription": "Clique em um espaço em branco para adicionar um novo nó",
+               "addNode": "Adicionar nó",
+               "edit": "Editar",
+               "deleteClusterError": "Clusters não puderam ser removidos.",
+               "back": "Voltar",
+               "del": "Remover selecionado",
+               "editClusterError": "Clusters não puderam ser editados.",
+               "editEdge": "Editar aresta",
+               "createEdgeError": "Não foi possível linkar arestas a um cluster.",
+               "editNode": "Editar nó",
+               "editEdgeDescription": "Clique nos pontos de controle e os arraste para um nó para conectá-los",
+               "addEdge": "Adicionar aresta",
+               "edgeDescription": "Clique em um nó e arraste a aresta até outro nó para conectá-los"
+            },
+            "pt-BR": {
+               "addDescription": "Clique em um espaço em branco para adicionar um novo nó",
+               "addNode": "Adicionar nó",
+               "edit": "Editar",
+               "deleteClusterError": "Clusters não puderam ser removidos.",
+               "back": "Voltar",
+               "del": "Remover selecionado",
+               "editClusterError": "Clusters não puderam ser editados.",
+               "editEdge": "Editar aresta",
+               "createEdgeError": "Não foi possível linkar arestas a um cluster.",
+               "editNode": "Editar nó",
+               "editEdgeDescription": "Clique nos pontos de controle e os arraste para um nó para conectá-los",
+               "addEdge": "Adicionar aresta",
+               "edgeDescription": "Clique em um nó e arraste a aresta até outro nó para conectá-los"
+            },
+            "en": {
+               "addDescription": "Click in an empty space to place a new node.",
+               "addNode": "Add Node",
+               "edit": "Edit",
+               "deleteClusterError": "Clusters cannot be deleted.",
+               "back": "Back",
+               "del": "Delete selected",
+               "editClusterError": "Clusters cannot be edited.",
+               "editEdge": "Edit Edge",
+               "createEdgeError": "Cannot link edges to a cluster.",
+               "editNode": "Edit Node",
+               "editEdgeDescription": "Click on the control points and drag them to a node to connect to it.",
+               "addEdge": "Add Edge",
+               "edgeDescription": "Click on a node and drag the edge to another node to connect them."
+            },
+            "it": {
+               "addDescription": "Clicca per aggiungere un nuovo nodo",
+               "addNode": "Aggiungi un nodo",
+               "edit": "Modifica",
+               "deleteClusterError": "I cluster non possono essere cancellati",
+               "back": "Indietro",
+               "del": "Cancella la selezione",
+               "editClusterError": "I clusters non possono essere modificati.",
+               "editEdge": "Modifica il vertice",
+               "createEdgeError": "Non si possono collegare vertici ad un cluster",
+               "editNode": "Modifica il nodo",
+               "editEdgeDescription": "Clicca sui Punti di controllo e trascinali ad un nodo per connetterli.",
+               "addEdge": "Aggiungi un vertice",
+               "edgeDescription": "Clicca su un nodo e trascinalo ad un altro nodo per connetterli."
+            },
+            "cn": {
+               "addDescription": "单击空白处放置新节点。",
+               "addNode": "添加节点",
+               "edit": "编辑",
+               "deleteClusterError": "无法删除群集。",
+               "back": "返回",
+               "del": "删除选定",
+               "editClusterError": "无法编辑群集。",
+               "editEdge": "编辑连接线",
+               "createEdgeError": "无法将连接线连接到群集。",
+               "editNode": "编辑节点",
+               "editEdgeDescription": "单击控制节点并将它们拖到节点上连接。",
+               "addEdge": "添加连接线",
+               "edgeDescription": "单击某个节点并将该连接线拖动到另一个节点以连接它们。"
+            },
+            "es": {
+               "addDescription": "Haga clic en un lugar vacío para colocar un nuevo nodo.",
+               "addNode": "Añadir nodo",
+               "edit": "Editar",
+               "deleteClusterError": "No es posible eliminar grupos.",
+               "back": "Atrás",
+               "del": "Eliminar selección",
+               "editClusterError": "No es posible editar grupos.",
+               "editEdge": "Editar arista",
+               "createEdgeError": "No se puede conectar una arista a un grupo.",
+               "editNode": "Editar nodo",
+               "editEdgeDescription": "Haga clic en un punto de control y arrastrelo a un nodo para conectarlo.",
+               "addEdge": "Añadir arista",
+               "edgeDescription": "Haga clic en un nodo y arrastre la arista hacia otro nodo para conectarlos."
+            },
+            "cs": {
+               "addDescription": "Kluknutím do prázdného prostoru můžete přidat nový vrchol.",
+               "addNode": "Přidat vrchol",
+               "edit": "Upravit",
+               "deleteClusterError": "Nelze mazat shluky.",
+               "back": "Zpět",
+               "del": "Smazat výběr",
+               "editClusterError": "Nelze upravovat shluky.",
+               "editEdge": "Upravit hranu",
+               "createEdgeError": "Nelze připojit hranu ke shluku.",
+               "editNode": "Upravit vrchol",
+               "editEdgeDescription": "Přetažením kontrolního vrcholu hrany ji můžete připojit k jinému vrcholu.",
+               "addEdge": "Přidat hranu",
+               "edgeDescription": "Přetažením z jednoho vrcholu do druhého můžete spojit tyto vrcholy novou hranou."
+            },
+            "en_US": {
+               "addDescription": "Click in an empty space to place a new node.",
+               "addNode": "Add Node",
+               "edit": "Edit",
+               "deleteClusterError": "Clusters cannot be deleted.",
+               "back": "Back",
+               "del": "Delete selected",
+               "editClusterError": "Clusters cannot be edited.",
+               "editEdge": "Edit Edge",
+               "createEdgeError": "Cannot link edges to a cluster.",
+               "editNode": "Edit Node",
+               "editEdgeDescription": "Click on the control points and drag them to a node to connect to it.",
+               "addEdge": "Add Edge",
+               "edgeDescription": "Click on a node and drag the edge to another node to connect them."
+            },
+            "uk_UA": {
+               "addDescription": "Kлікніть на вільне місце, щоб додати новий вузол.",
+               "addNode": "Додати вузол",
+               "edit": "Редагувати",
+               "deleteClusterError": "Групи не можуть бути видалені.",
+               "back": "Назад",
+               "del": "Видалити обране",
+               "editClusterError": "Групи недоступні для редагування.",
+               "editEdge": "Редагувати край",
+               "createEdgeError": "Не можливо об'єднати краї в групу.",
+               "editNode": "Редагувати вузол",
+               "editEdgeDescription": "Клікніть на контрольні точки і перетягніть їх у вузол, щоб підключитися до нього.",
+               "addEdge": "Додати край",
+               "edgeDescription": "Клікніть на вузол і перетягніть край до іншого вузла, щоб їх з'єднати."
+            },
+            "zh_CN": {
+               "addDescription": "单击空白处放置新节点。",
+               "addNode": "添加节点",
+               "edit": "编辑",
+               "deleteClusterError": "无法删除群集。",
+               "back": "返回",
+               "del": "删除选定",
+               "editClusterError": "无法编辑群集。",
+               "editEdge": "编辑连接线",
+               "createEdgeError": "无法将连接线连接到群集。",
+               "editNode": "编辑节点",
+               "editEdgeDescription": "单击控制节点并将它们拖到节点上连接。",
+               "addEdge": "添加连接线",
+               "edgeDescription": "单击某个节点并将该连接线拖动到另一个节点以连接它们。"
+            },
+            "en_EN": {
+               "addDescription": "Click in an empty space to place a new node.",
+               "addNode": "Add Node",
+               "edit": "Edit",
+               "deleteClusterError": "Clusters cannot be deleted.",
+               "back": "Back",
+               "del": "Delete selected",
+               "editClusterError": "Clusters cannot be edited.",
+               "editEdge": "Edit Edge",
+               "createEdgeError": "Cannot link edges to a cluster.",
+               "editNode": "Edit Node",
+               "editEdgeDescription": "Click on the control points and drag them to a node to connect to it.",
+               "addEdge": "Add Edge",
+               "edgeDescription": "Click on a node and drag the edge to another node to connect them."
+            },
+            "nl": {
+               "addDescription": "Klik op een leeg gebied om een nieuwe node te maken.",
+               "addNode": "Node toevoegen",
+               "edit": "Wijzigen",
+               "deleteClusterError": "Clusters kunnen niet worden verwijderd.",
+               "back": "Terug",
+               "del": "Selectie verwijderen",
+               "editClusterError": "Clusters kunnen niet worden aangepast.",
+               "editEdge": "Link wijzigen",
+               "createEdgeError": "Kan geen link maken naar een cluster.",
+               "editNode": "Node wijzigen",
+               "editEdgeDescription": "Klik op de verbindingspunten en sleep ze naar een node om daarmee te verbinden.",
+               "addEdge": "Link toevoegen",
+               "edgeDescription": "Klik op een node en sleep de link naar een andere node om ze te verbinden."
+            }
+         },
+         "addNode": true,
+         "deleteNode": true,
+         "controlNodeStyle": {
+            "shape": "dot",
+            "size": 6,
+            "color": {
+               "border": "#3c3c3c",
+               "highlight": {
+                  "border": "#3c3c3c",
+                  "background": "#07f968"
+               },
+               "background": "#ff0000"
+            },
+            "borderWidth": 2,
+            "borderWidthSelected": 2
+         },
+         "initiallyActive": true,
+         "locale": "es",
+         "addEdge": true,
+         "enabled": false,
+         "deleteEdge": true
+      }
+   }
+}

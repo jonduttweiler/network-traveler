@@ -22,6 +22,7 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "mime-types": "^2.1.24",
     "vis-network": "^6.1.1"
   }
 }
