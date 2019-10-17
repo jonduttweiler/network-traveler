@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const https = require('https');
 const Stream = require('stream').Transform;
 const mime = require('mime-types');
@@ -11,6 +12,7 @@ async function process(){
     let network = JSON.parse(fs.readFileSync("./data/network.json"));
     await download_nodes_imgs(network);
     await download_groups_imgs(network);
+
     writejson(network,"./data/network-local.json")
 }
 
@@ -23,7 +25,7 @@ async function download_nodes_imgs(network){
             if(node.image){
                 let filename = await downloadImg(node.image,`${target_dir}/${node.id}`);
                 if(filename){
-                    node.image = filename;
+                    node.image = destPath(filename); 
                 } //else set broken imgs?
             };
     }
@@ -39,11 +41,17 @@ async function download_groups_imgs(network){
                 let filename = await downloadImg(group.image,`${target_dir}/${group.name}`);
                 if(filename){
                     network.options.groups[group.name].image = filename;
+                    network.options.groups[group.name].image = destPath(filename);
+
                 } //else set broken imgs?
             };
     }
 }
 
+
+function destPath(srcPath){
+    return path.join(dist_target_dir, path.basename(srcPath));
+}
 
 
 //Update jsonfile
