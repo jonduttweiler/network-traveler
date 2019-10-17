@@ -7,26 +7,49 @@ const target_dir = "./src/imgs";
 const dist_target_dir = "./img";
 
 //Read json, search urls,
-let network = JSON.parse(fs.readFileSync("./data/network.json"));
+async function process(){
+    let network = JSON.parse(fs.readFileSync("./data/network.json"));
+    await download_nodes_imgs(network);
+    await download_groups_imgs(network);
+    writejson(network,"./data/network-local.json")
+}
 
-let groups = Object.keys(network.options.groups)
-                   .map(key => ({...network.options.groups[key],name: key}))
-                   .filter(group => group.shape === "image")
-                   .forEach(group => {// download imgs, change web urls to local
-                    //get filename
-                        //TODO: add support for another image types
-                        console.log(group.image);
-                        if(group.image){
-                            downloadImg(group.image,`${target_dir}/${group.name}`).then( filename => {
-                                if(filename){
-                                    network.options.groups[group.name].image = filename;
-                                } //else set broken imgs?
-                            });
-                        };
-                   }) 
+process();
+
+
+async function download_nodes_imgs(network){
+    let nodes = network.nodes.filter(group => group.shape === "image");
+    for(let node of nodes){
+            if(node.image){
+                let filename = await downloadImg(node.image,`${target_dir}/${node.id}`);
+                if(filename){
+                    node.image = filename;
+                } //else set broken imgs?
+            };
+    }
+}
+
+async function download_groups_imgs(network){
+    let groups = Object.keys(network.options.groups)
+                       .map(key => ({...network.options.groups[key],name: key}))
+                       .filter(group => group.shape === "image");
+
+    for(let group of groups){
+            if(group.image){
+                let filename = await downloadImg(group.image,`${target_dir}/${group.name}`);
+                if(filename){
+                    network.options.groups[group.name].image = filename;
+                } //else set broken imgs?
+            };
+    }
+}
+
+
 
 //Update jsonfile
-fs.writeFileSync("./data/network-local.json",JSON.stringify(network,null,3));
+function writejson(network,pathtofile){
+    fs.writeFileSync(pathtofile,JSON.stringify(network,null,3));
+}
 
 
 //return promise
