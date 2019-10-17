@@ -5,3 +5,4 @@ dist/img/*
 zips/*
 
 dist.zip
+dist/bundle.js
