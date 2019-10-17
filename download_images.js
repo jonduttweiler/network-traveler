@@ -3,11 +3,11 @@ const path = require('path');
 const https = require('https');
 const Stream = require('stream').Transform;
 const mime = require('mime-types');
+const crypto = require('crypto');
 
 const target_dir = "./src/imgs";
 const dist_target_dir = "./img";
 
-//Read json, search urls,
 async function process(){
     let network = JSON.parse(fs.readFileSync("./data/network.json"));
     await download_nodes_imgs(network);
@@ -23,7 +23,7 @@ async function download_nodes_imgs(network){
     let nodes = network.nodes.filter(group => group.shape === "image");
     for(let node of nodes){
             if(node.image){
-                let filename = await downloadImg(node.image,`${target_dir}/${node.id}`);
+                let filename = await downloadImg(node.image,target_dir);
                 if(filename){
                     node.image = destPath(filename); 
                 } //else set broken imgs?
@@ -38,9 +38,9 @@ async function download_groups_imgs(network){
 
     for(let group of groups){
             if(group.image){
-                let filename = await downloadImg(group.image,`${target_dir}/${group.name}`);
+
+                let filename = await downloadImg(group.image,target_dir);
                 if(filename){
-                    network.options.groups[group.name].image = filename;
                     network.options.groups[group.name].image = destPath(filename);
 
                 } //else set broken imgs?
@@ -59,12 +59,14 @@ function writejson(network,pathtofile){
     fs.writeFileSync(pathtofile,JSON.stringify(network,null,3));
 }
 
-
-//return promise
-//necesitamos devolver el path ahora! la extension la obtenemos despues de hacer el request!
-function downloadImg(url,target_file){
+/**
+ * 
+ * @param {*} url 
+ * @param {*} target_dir 
+ * @returns Promise that resolve with filepath of downloaded resource
+ */
+function downloadImg(url,target_dir){
     return new Promise((resolve,reject) => {
-
     https.get(url, res => {
         let extension = mime.extension(res.headers["content-type"]);
 
@@ -72,9 +74,11 @@ function downloadImg(url,target_file){
             let data = new Stream(); 
             res.on('data', chunk => data.push(chunk))
                .on('end', _ => {
-                   let filename = `${target_file}.${extension}`;
-                   fs.writeFileSync(filename, data.read());
-                   resolve(filename);
+                   let hash = crypto.createHash('sha256').update(url).digest('hex');
+                   let filename = `${hash}.${extension}`;
+                   let filepath = path.join(target_dir,filename);
+                   fs.writeFileSync(filepath, data.read());
+                   resolve(filepath);
                });
         } else {
             reject({code: res.statusCode}); //add more info
