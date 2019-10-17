@@ -48,15 +48,15 @@ app.post('/bundle', async (req, res, next) => {
     let travel = req.body.travel; //copy travel to data?
 
     await download_files(network);
-    console.log("downloaded files!");
+    await npm_build(); 
+    let generated_zip = path.resolve("zips",`dist-${new Date().getTime()}.zip`);
 
-    let npm_result = await npm_build(); 
-    console.log("NPM BUILD executed!");
-
-    zip_folder("dist","dist.zip");
+    await zip_folder("dist",generated_zip);
     
 
-    return res.sendFile(path.resolve("./dist.zip")); //send file
+    //remove temp files async?
+    console.log("done!");
+    return res.sendFile(generated_zip); //TODO: DELETE GENERATED ZIP
   } catch (err) {
     console.log(err);
     res.status(500).json({ err });
