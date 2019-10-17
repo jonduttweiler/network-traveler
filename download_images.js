@@ -8,15 +8,11 @@ const crypto = require('crypto');
 const target_dir = "./src/imgs";
 const dist_target_dir = "./img";
 
-async function process(){
-    let network = JSON.parse(fs.readFileSync("./data/network.json"));
+exports.process = async function(network){
     await download_nodes_imgs(network);
     await download_groups_imgs(network);
-
-    writejson(network,"./data/network-local.json")
+    return network;
 }
-
-process();
 
 
 async function download_nodes_imgs(network){
