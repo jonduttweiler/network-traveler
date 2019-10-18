@@ -2,8 +2,8 @@
    "nodes": [
       {
          "custom": {},
-         "x": -58,
-         "y": -250,
+         "x": 341,
+         "y": -5,
          "id": "1",
          "label": "Node 1",
          "title": "Node 1",
@@ -11,8 +11,8 @@
       },
       {
          "custom": {},
-         "x": 96,
-         "y": 58,
+         "x": -7,
+         "y": 34,
          "id": "2",
          "label": "Node 2",
          "title": "Node 2",
@@ -20,8 +20,8 @@
       },
       {
          "custom": {},
-         "x": -156,
-         "y": 222,
+         "x": -291,
+         "y": 49,
          "id": "3",
          "label": "Node 3",
          "title": "Node 3",
@@ -29,8 +29,8 @@
       },
       {
          "custom": {},
-         "x": 76,
-         "y": -137,
+         "x": 182,
+         "y": -57,
          "id": "4",
          "label": "Node 4",
          "title": "Node 4",
@@ -38,8 +38,8 @@
       },
       {
          "custom": {},
-         "x": -24,
-         "y": 134,
+         "x": -136,
+         "y": 41,
          "id": "5",
          "label": "Node 5",
          "title": "Node 5",
@@ -47,8 +47,8 @@
       },
       {
          "custom": {},
-         "x": -38,
-         "y": -391,
+         "x": 270,
+         "y": 121,
          "id": "6",
          "label": "Node 6",
          "title": "Node 6",
@@ -56,8 +56,8 @@
       },
       {
          "custom": {},
-         "x": 127,
-         "y": -11,
+         "x": 45,
+         "y": -72,
          "id": "7",
          "label": "Node 7",
          "title": "Node 7",
@@ -65,8 +65,8 @@
       },
       {
          "custom": {},
-         "x": 69,
-         "y": -301,
+         "x": 413,
+         "y": 116,
          "id": "8",
          "label": "Node 8",
          "title": "Node 8",
@@ -74,8 +74,8 @@
       },
       {
          "custom": {},
-         "x": 213,
-         "y": -179,
+         "x": 151,
+         "y": -195,
          "id": "9",
          "label": "Node 9",
          "title": "Node 9",
@@ -83,8 +83,8 @@
       },
       {
          "custom": {},
-         "x": -245,
-         "y": -308,
+         "x": 507,
+         "y": -107,
          "id": "10",
          "label": "Node 10",
          "title": "Node 10",
@@ -92,8 +92,8 @@
       },
       {
          "custom": {},
-         "x": -100,
-         "y": 18,
+         "x": -127,
+         "y": -104,
          "id": "11",
          "label": "Node 11",
          "title": "Node 11",
@@ -101,8 +101,8 @@
       },
       {
          "custom": {},
-         "x": -265,
-         "y": 310,
+         "x": -430,
+         "y": 66,
          "id": "12",
          "label": "Node 12",
          "title": "Node 12",
@@ -110,8 +110,8 @@
       },
       {
          "custom": {},
-         "x": -263,
-         "y": 128,
+         "x": -289,
+         "y": 192,
          "id": "13",
          "label": "Node 13",
          "title": "Node 13",
@@ -119,21 +119,22 @@
       },
       {
          "custom": {},
-         "x": -82,
-         "y": 343,
+         "x": -314,
+         "y": -92,
          "id": "14",
          "label": "Node 14",
          "title": "Node 14",
          "group": "eta"
       },
       {
+         "image": "img/eb32ed051badd2bf94a378ea692a2b47362873bab7a3972f211b16bca5c6226a.jpeg",
+         "shape": "image",
          "custom": {},
-         "x": 81,
-         "y": 229,
+         "x": -91,
+         "y": 178,
          "id": "15",
          "label": "Node 15",
-         "title": "Node 15",
-         "group": "theta"
+         "title": "Node 15"
       }
    ],
    "edges": [
@@ -316,19 +317,19 @@
       },
       "groups": {
          "epsilon": {
-            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Emoji_u263a.svg/1200px-Emoji_u263a.svg.png",
+            "image": "img/541b80b1762e62d955597d36b04375090039c0d9f1e946fc3050045a2061c99e.png",
             "size": 15,
             "shape": "image",
             "custom": {}
          },
          "eta": {
-            "image": "https://ih1.redbubble.net/image.121990369.1636/aps,650x642,small,transparent-pad,750x1000,f8f8f8.u3.jpg",
+            "image": "img/8bfefc832c8e0f61d666ec32a9fea7cae744c9d4c230fe426374335967707c9d.jpeg",
             "size": 15,
             "shape": "image",
             "custom": {}
          },
          "dseta": {
-            "image": "https://www.reasonwhy.es/sites/default/files/emoji_influencers.jpg",
+            "image": "img/1cecf794498efcb3070d53e9edf1f4d4b5e84cb2aadaa82c1354c124b524955c.jpeg",
             "size": 15,
             "shape": "image",
             "custom": {}
@@ -345,25 +346,11 @@
             }
          },
          "delta": {
-            "image": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "image": "img/2751bd8de7fbf0c3370ac82dc9a16a93ccbc24d0ef5dee08c8bd92e97ddf15e0.jpeg",
             "shape": "image",
             "color": "#000",
             "size": 30,
             "mass": 5
-         },
-         "theta": {
-            "color": {
-               "border": "#2B7CE9",
-               "highlight": {
-                  "border": "#2B7CE9",
-                  "background": "#D2E5FF"
-               },
-               "hover": {
-                  "border": "#2B7CE9",
-                  "background": "#D2E5FF"
-               },
-               "background": "#97C2FC"
-            }
          },
          "beta": {
             "size": 15,
