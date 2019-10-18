@@ -6,3 +6,10 @@ zips/*
 
 dist.zip
 dist/bundle.js
+
+dist/bundle.js
+dist/traveler.html
+dist/fonts/fontawesome-webfont.eot
+dist/fonts/fontawesome-webfont.ttf
+dist/fonts/fontawesome-webfont.woff
+dist/fonts/fontawesome-webfont.woff2
