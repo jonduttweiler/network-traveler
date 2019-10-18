@@ -7,26 +7,6 @@ const bodyParser = require('body-parser');
 const { spawn } = require('child_process');
 const download_files = require('./download_images').process;
 
-
-execute = (command, args) => {
-  return new Promise((resolve, reject) => {
-    let stdout = "";
-    let stderr = "";
-    const npm_run = spawn(command, args);
-    npm_run.stdout.on('data', data => stdout += data);
-    npm_run.stderr.on('data', data => stderr += data);
-
-    npm_run.on('close', (code) => {
-      if (code == 0) {
-        resolve({ code, stdout, stderr })
-      } else {
-        reject({ code, stdout, stderr })
-      }
-    });
-
-  });
-}
-
 var app = express();
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));     // to support URL-encoded bodies
@@ -77,11 +57,11 @@ execute = (command, args) => {
   return new Promise((resolve, reject) => {
     let stdout = "";
     let stderr = "";
-    const npm_run = spawn(command, args);
-    npm_run.stdout.on('data', data => stdout += data);
-    npm_run.stderr.on('data', data => stderr += data);
+    const cmd_run = spawn(command, args);
+    cmd_run.stdout.on('data', data => stdout += data);
+    cmd_run.stderr.on('data', data => stderr += data);
 
-    npm_run.on('close', (code) => {
+    cmd_run.on('close', (code) => {
       if (code == 0) {
         resolve({ code, stdout, stderr })
       } else {
@@ -91,7 +71,6 @@ execute = (command, args) => {
 
   });
 }
-
 
 
 
