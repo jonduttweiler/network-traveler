@@ -10,8 +10,7 @@ import './travel.js';
 //import images
 require.context('./imgs');
 
-//const networkdata = require('../data/network.json');
-const networkdata = require('../data/network-local.json');
+const networkdata = require('./data/network.json');
 const vis = require('vis-network');
 
 let nodes = new vis.DataSet(networkdata.nodes);

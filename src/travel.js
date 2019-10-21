@@ -1,5 +1,5 @@
 //handle click on buttons
-const travel = require('../data/travel.json');
+const travel = require('./data/travel.json');
 console.log(travel);
 
 let current_idx = -1;
