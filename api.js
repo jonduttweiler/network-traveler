@@ -33,10 +33,11 @@ app.post('/bundle', async (req, res, next) => {
     await bundle_it(src_dir,`dists/${id}`); 
     await zip_folder(`dists/${id}`,`zips/${id}`);
   
-    //remove temp files async?*/
-    console.log("done!");
-    //return res.sendFile(generated_zip); //TODO: DELETE GENERATED ZIP
-    res.json({});
+    res.sendFile(path.resolve(`./zips/${id}.zip`)); //TODO: remove generated files
+
+
+
+    return
   } catch (err) {
     console.log(err);
     res.status(500).json({ err });
