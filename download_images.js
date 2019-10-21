@@ -5,29 +5,28 @@ const Stream = require('stream').Transform;
 const mime = require('mime-types');
 const crypto = require('crypto');
 
-const target_dir = "./src/imgs";
-const dist_target_dir = "./img";
-
-exports.process = async function(network){
-    await download_nodes_imgs(network);
-    await download_groups_imgs(network);
-    return network;
+/**
+ * Download images and update network references
+ */
+exports.process = async function(network, src_dir, dist_dir){ 
+    await download_nodes_imgs(network, src_dir, dist_dir);
+    await download_groups_imgs(network, src_dir, dist_dir);
 }
 
 
-async function download_nodes_imgs(network){
+async function download_nodes_imgs(network,src_dir, dist_dir){
     let nodes = network.nodes.filter(group => group.shape === "image");
     for(let node of nodes){
             if(node.image){
-                let filename = await downloadImg(node.image,target_dir);
+                let filename = await downloadImg(node.image,src_dir);
                 if(filename){
-                    node.image = destPath(filename); 
+                    node.image = destPath(dist_dir,filename); 
                 } //else set broken imgs?
             };
     }
 }
 
-async function download_groups_imgs(network){
+async function download_groups_imgs(network,src_dir, dist_dir){
     let groups = Object.keys(network.options.groups)
                        .map(key => ({...network.options.groups[key],name: key}))
                        .filter(group => group.shape === "image");
@@ -35,9 +34,9 @@ async function download_groups_imgs(network){
     for(let group of groups){
             if(group.image){
 
-                let filename = await downloadImg(group.image,target_dir);
+                let filename = await downloadImg(group.image,src_dir);
                 if(filename){
-                    network.options.groups[group.name].image = destPath(filename);
+                    network.options.groups[group.name].image = destPath(dist_dir,filename);
 
                 } //else set broken imgs?
             };
@@ -45,14 +44,8 @@ async function download_groups_imgs(network){
 }
 
 
-function destPath(srcPath){
-    return path.join(dist_target_dir, path.basename(srcPath));
-}
-
-
-//Update jsonfile
-function writejson(network,pathtofile){
-    fs.writeFileSync(pathtofile,JSON.stringify(network,null,3));
+function destPath(dist_dir,srcPath){
+    return path.join(dist_dir, path.basename(srcPath));
 }
 
 /**
