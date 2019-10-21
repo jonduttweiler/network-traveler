@@ -30,7 +30,7 @@ app.post('/bundle', async (req, res, next) => {
     let travel = req.body.travel; 
 
     let src_dir = await make_src_dir(id,network,travel);
-    await build_it(src_dir); 
+    await build_it(src_dir, `dists/${id}`); 
 
     
     /*let generated_zip = path.resolve("zips",`dist-${id}.zip`);
@@ -68,22 +68,16 @@ make_src_dir = async (id,network,travel) =>{
 }
 
 
-
-
-//that returns a promise
-build_it = src_dir => {
-  
-  console.log(src_dir);
-  //pasar parametros de source e ouput dir
+build_it = (src_dir,output_dir) => {
   return execute("/home/jduttweiler/network-traveler/node_modules/.bin/webpack", 
                  [
                   '--config', `webpack.config.js`,
                   '--entry', `./${src_dir}/app.js`,
-                  '--output-path', `dists/test/`
+                  '--output-path', `${output_dir}`
                 ]
                  
                  
-                );
+  );
 }
 
 copy_folder = (src, dest) => {
