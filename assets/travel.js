@@ -31,8 +31,10 @@ if(travel && travel.length){ //solo si tenemos un travel que seguir ¯\_(ツ)_/�
         show_current_idx();
     }
     
-    
-    
+
     document.getElementById('prev-btn').addEventListener("click", prev);
     document.getElementById('next-btn').addEventListener("click", next);
+} else {
+    document.getElementById('prev-btn').style.display="none";
+    document.getElementById('next-btn').style.display="none";
 }
