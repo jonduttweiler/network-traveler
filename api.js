@@ -27,20 +27,20 @@ const zips_dir = path.join(".","tmp","zips")
 app.post('/bundle', async (req, res, next) => {
   try {
 
-    let id = new Date().getTime();
-
     let network = req.body.network;
-    let travel = req.body.travel;
-    await make_src_dir(src_dir, id, network, travel);
+    let travel = req.body.travel; 
 
+
+    let id = new Date().getTime();
     let src = path.join(src_dir,`${id}`);
     let dist= path.join(dist_dir,`${id}`);
     let zips= path.join(zips_dir,`${id}`);
 
+    
+    await make_src_dir(src_dir, id, network, travel);
     await bundle_it(src, dist);
     await zip_folder(dist, zips);
 
-    console.log("sending")
     res.sendFile(path.resolve(`${zips}.zip`), err => {
       if (!err) {
         remove_generated_files(id);
@@ -54,7 +54,7 @@ app.post('/bundle', async (req, res, next) => {
 
 })
 
-const make_src_dir = async (src_dir, id, network, travel) => {
+const make_src_dir = async (src_dir, id, network, travel = []) => {
   let src = path.join(src_dir, `${id}`);
   let src_img = path.join(src, "imgs");
   let src_data = path.join(src, "data");
@@ -68,7 +68,7 @@ const make_src_dir = async (src_dir, id, network, travel) => {
   await download_files(network, src_img, dist_dir);
   writejson(network, `${src_data}/network.json`);
   writejson(travel, `${src_data}/travel.json`);
-
+  
   return ;
 }
 
@@ -80,8 +80,6 @@ const bundle_it = (src_dir, output_dir) => {
       '--entry', `./${src_dir}/app.js`,
       '--output-path', `${output_dir}`
     ]
-
-
   );
 }
 
