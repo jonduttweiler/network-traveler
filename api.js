@@ -30,14 +30,9 @@ app.post('/bundle', async (req, res, next) => {
     let travel = req.body.travel; 
 
     let src_dir = await make_src_dir(id,network,travel);
-    await build_it(src_dir, `dists/${id}`); 
-
-    
-    /*let generated_zip = path.resolve("zips",`dist-${id}.zip`);
-
-    await zip_folder("dist",generated_zip);
-    
-
+    await bundle_it(src_dir,`dists/${id}`); 
+    await zip_folder(`dists/${id}`,`zips/${id}`);
+  
     //remove temp files async?*/
     console.log("done!");
     //return res.sendFile(generated_zip); //TODO: DELETE GENERATED ZIP
@@ -68,7 +63,7 @@ make_src_dir = async (id,network,travel) =>{
 }
 
 
-build_it = (src_dir,output_dir) => {
+bundle_it = (src_dir,output_dir) => {
   return execute("/home/jduttweiler/network-traveler/node_modules/.bin/webpack", 
                  [
                   '--config', `webpack.config.js`,
@@ -80,14 +75,14 @@ build_it = (src_dir,output_dir) => {
   );
 }
 
+zip_folder = (src,output) => {
+  return execute("zip",['-r',`${output}`,`${src}`]);
+}
+
 copy_folder = (src, dest) => {
   return execute('cp', ['-r', src,dest]);
 }
 
-
-zip_folder = (src, dest) => {
-  return execute('zip', ['-r', dest, src]);
-}
 
 execute = (command, args) => {
   return new Promise((resolve, reject) => {
