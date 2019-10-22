@@ -11,7 +11,7 @@ You must also specify the ids sequence in ./data/travel.json
 
 Then run **npm run build** to generate the bundle. Now you can run your presentation offline.
 
-#api.js
+#api.js  
 api.js exposes an API rest on port 3000. This has only an endpoint of POST type. Receives a JSON-encoded request, and return a zip file.
 The request body contains two keys (network, travel)
 Network is a json object that represents a network. This contains nodes, edges and options.
