@@ -6,7 +6,6 @@ import './css/vis-network/vis-network.min.css';
 import './travel.js';
 
 
-
 //import images
 require.context('./imgs');
 

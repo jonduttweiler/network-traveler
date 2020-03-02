@@ -1,9 +1,10 @@
 {
   "name": "traveling_networks",
   "version": "1.0.0",
-  "description": "\"This project allows you to load a network visjs and travel the nodes in a certain order\"",
-  "main": "app.js",
+  "description": "\"This project allows you to load a network visjs and travel snapshots in a certain order\"",
+  "main": "api.js",
   "scripts": {
+    "start": "node api.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
     "loopdev": "nodemon api.js"
@@ -12,7 +13,7 @@
     "visjs",
     "network"
   ],
-  "author": "Jonatan E. Duttweiler <jduttweiler@santafe.gov.ar>",
+  "author": "Jonatan E. Duttweiler <jonatanduttweiler@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
