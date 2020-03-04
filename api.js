@@ -8,8 +8,8 @@ const { spawn } = require('child_process');
 const download_files = require('./download_images').process;
 
 var app = express();
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));     // to support URL-encoded bodies
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,17 +23,21 @@ const src_dir =  path.join(".","tmp","src")
 const dist_dir = path.join(".","tmp","dist") 
 const zips_dir = path.join(".","tmp","zips") 
 
-
 app.post('/bundle', async (req, res, next) => {
-  try {
+  const id = new Date().getTime();
 
+  try {
     let network = req.body.network;
     let travel = req.body.travel; 
 
 
+    await copyFolder("./assets", src);
+    await makeSrcData(src, network, travel);
+    await makeSrcDataImages(src,network);
+
     let id = new Date().getTime();
-    let src = path.join(src_dir,`${id}`);
-    let dist= path.join(dist_dir,`${id}`);
+    const src = path.join(src_dir, `${id}`); //estas son las carpetas del req que estamos procesando
+    const dist = path.join(dist_dir, `${id}`); //estas son las carpetas del req que estamos procesando
     let zips= path.join(zips_dir,`${id}`);
 
     
@@ -50,6 +54,7 @@ app.post('/bundle', async (req, res, next) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({ err });
+    remove_generated_files(id); //si es que existen
   }
 
 })

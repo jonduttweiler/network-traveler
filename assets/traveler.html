@@ -13,17 +13,78 @@
             height: 100vh;
             border: 1px solid lightgray;
         }
+
+        body{
+            display:flex;
+            margin: 0;
+        }
+
+        
+        .network-container {
+            flex-grow: 1;
+        }
+        
+        .navigation-container{
+            flex-grow: 0;
+            background-color: #454F52;
+            padding: 10px;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+        
+        .navigation-buttons{
+            text-align: center;
+            padding: 12px;
+        }
+
+        .step-container {
+            display: flex;
+            background-color: #e5e5e590;
+            border-radius: 5px;
+            padding: 20px 12px;
+            margin: 8px 0px;
+            border: 1px solid transparent;
+            height: 80px;
+        }
+
+        .step-container:hover {
+            background-color: #e5e5e599;
+        }
+
+        .step-container.active {
+            border: 1px solid #3DE058;
+        }
+        
+        .step-container img {
+            border: 1px solid #ccc;
+            width: 150px;
+            height: auto;
+            flex-shrink: 0;
+            background-color:white;
+        }
+
+        .step-container .text-container{
+            max-width: 120px;
+            overflow-wrap: break-word;
+            margin-right: 20px; 
+        }
     </style>
 
 </head>
 
 <body>
-    <button id="fit-btn">Fit</button>
-    <button id="prev-btn">Prev</button>
-    <button id="next-btn">Next</button>
-    <span id="travel-steps"></span>
-    <span id="current-step"></span>
-    <div id="mynetwork"></div>
+    <div class="network-container">
+        <div id="mynetwork"></div>
+    </div>
+
+    <div class="navigation-container">
+        <div class="navigation-buttons">
+            <button id="fit-btn">Ajustar</button>
+            <button id="prev-btn">Anterior</button>
+            <button id="next-btn">Siguiente</button>
+        </div>
+        <div id="travel-steps"></div>
+    </div>
 
     <script type="text/javascript" src="./bundle.js"></script>
 </body>
