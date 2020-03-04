@@ -1,16 +1,51 @@
 //handle click on buttons
 const travel = require('./data/travel.json');
 
-if (travel && travel.length) { 
+const generateStepPanel = snapshot => {
+    let step_container = document.createElement("div");
+    step_container.classList.add("step-container");
+
+    let text = document.createElement("div");
+    text.classList.add("text-container");
+    text.innerHTML = `<div>x:${snapshot.position.x.toFixed(2)}</div>
+                      <div>y:${snapshot.position.y.toFixed(2)}</div>
+                      <div>scale:${snapshot.scale.toFixed(2)}</div>`;
+
+    let image = document.createElement("img");
+    image.src=snapshot.img;
+
+    step_container.appendChild(text);
+    step_container.appendChild(image);
+    
+    return step_container;
+};
+
+
+if (travel && travel.length) { //solo si tenemos un travel que seguir ¯\_(ツ)_/¯
     let current_idx = -1; //create a class!
-    document.getElementById('travel-steps').innerHTML = `[${travel.map(step => `[${step.x}-${step.y}-${step.scale}]`).join(", ")}]`;
+    const steps = travel.map(generateStepPanel);
+    
+    for (const stepEl of steps) {
+        document.getElementById('travel-steps').appendChild(stepEl);
+    }
+
 
     const show_current_idx = _ => {
-        document.getElementById('current-step').innerHTML = current_idx >= 0 ? `Current: ${current_idx}` : "";
+        const current = current_idx;
+        //remove previous
+        document.getElementById('travel-steps')
+                .querySelectorAll('div')
+                .forEach(item => item.classList.remove("active"));
+
+        const currentEL = document.getElementById('travel-steps').querySelectorAll(`.step-container:nth-child(${current+1})`)[0];
+        currentEL.classList.add("active");
+        
     }
 
     const show_current_in_network = current_idx => {
-        network.moveTo({ ...travel[current_idx], animation: true });
+        let currentSnapshot = travel[current_idx];
+         
+        network.moveTo({ ...currentSnapshot, animation: true });
     }
 
     const prev = _ => {
