@@ -6,6 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { spawn } = require('child_process');
 const download_files = require('./download_images').process;
+const admZip = require('adm-zip');
+
 
 var app = express();
 app.use(express.json({limit: '50mb'}));
@@ -21,36 +23,31 @@ app.use((req, res, next) => {
 
 const src_dir =  path.join(".","tmp","src")
 const dist_dir = path.join(".","tmp","dist") 
-const zips_dir = path.join(".","tmp","zips") 
 
 app.post('/bundle', async (req, res, next) => {
   const id = new Date().getTime();
 
   try {
     let network = req.body.network;
-    let travel = req.body.travel; 
+    let travel = req.body.travel || [];
 
-
+    const id = new Date().getTime();
+    const src = path.join(src_dir, `${id}`); //estas son las carpetas del req que estamos procesando
+    const dist = path.join(dist_dir, `${id}`); //estas son las carpetas del req que estamos procesando
+  
     await copyFolder("./assets", src);
     await makeSrcData(src, network, travel);
     await makeSrcDataImages(src,network);
 
-    let id = new Date().getTime();
-    const src = path.join(src_dir, `${id}`); //estas son las carpetas del req que estamos procesando
-    const dist = path.join(dist_dir, `${id}`); //estas son las carpetas del req que estamos procesando
-    let zips= path.join(zips_dir,`${id}`);
-
-    
-    await make_src_dir(src_dir, id, network, travel);
     await bundle_it(src, dist);
-    await zip_folder(dist, zips);
+    
+    const zipped = new admZip();
+    zipped.addLocalFolder(dist);
+    remove_generated_files(id);
 
-    res.sendFile(path.resolve(`${zips}.zip`), err => {
-      if (!err) {
-        remove_generated_files(id);
-      }
-    });
-    return;
+    res.writeHead(200, [['Content-Type', 'application/zip']]);
+    return res.end(zipped.toBuffer());
+
   } catch (err) {
     console.log(err);
     res.status(500).json({ err });
@@ -59,22 +56,21 @@ app.post('/bundle', async (req, res, next) => {
 
 })
 
-const make_src_dir = async (src_dir, id, network, travel = []) => {
-  let src = path.join(src_dir, `${id}`);
-  let src_img = path.join(src, "imgs");
-  let src_data = path.join(src, "data");
-  let dist_dir = "./img";
-
-  await copy_folder("./assets", src);
-
-  fs.mkdirSync(src_img);
+const makeSrcData = async (src, network, travel) => {
+  const src_data = path.join(src, "data");
   fs.mkdirSync(src_data);
-
-  await download_files(network, src_img, dist_dir);
   writejson(network, `${src_data}/network.json`);
   writejson(travel, `${src_data}/travel.json`);
-  
   return ;
+}
+
+const makeSrcDataImages = async (src,network) => { 
+  const src_img = path.join(src, "imgs");
+  const dist_dir = "./img";
+  fs.mkdirSync(src_img);
+
+  //OJO CON ESTE QUE ACTUALIZA LAS REFERENCIAS DEL NETWORK! DEBERIAN SER DOS METODOS SEPARADOS!!
+  await download_files(network, src_img, dist_dir);
 }
 
 
@@ -88,20 +84,15 @@ const bundle_it = (src_dir, output_dir) => {
   );
 }
 
-const zip_folder = (src, output) => {
-  return execute("zip", ['-r', `${output}`, `${src}`]);
-}
-
-const copy_folder = (src, dest) => {
+const copyFolder = (src, dest) => {
   return execute('cp', ['-r', src, dest]);
 }
 
 const remove_generated_files = id => {
   rm(`tmp/src/${id}`);
   rm(`tmp/dist/${id}`);
-  rm(`tmp/zips/${id}.zip`);
+  
 }
-
 
 const rm = (dir) => {
   if (dir.startsWith("tmp")) {

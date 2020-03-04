@@ -1,53 +1,18 @@
 //handle click on buttons
 const travel = require('./data/travel.json');
 
-const generateStepPanel = snapshot => {
-    let step_container = document.createElement("div");
-    step_container.classList.add("step-container");
-
-    let text = document.createElement("div");
-    text.classList.add("text-container");
-    text.innerHTML = `<div>x:${snapshot.position.x.toFixed(2)}</div>
-                      <div>y:${snapshot.position.y.toFixed(2)}</div>
-                      <div>scale:${snapshot.scale.toFixed(2)}</div>`;
-
-    let image = document.createElement("img");
-    image.src=snapshot.img;
-
-    step_container.appendChild(text);
-    step_container.appendChild(image);
-    
-    return step_container;
-};
-
-
-if (travel && travel.length) { //solo si tenemos un travel que seguir ¯\_(ツ)_/¯
+if (travel && travel.length) { 
     let current_idx = -1; //create a class!
-    const steps = travel.map(generateStepPanel);
-    
-    for (const stepEl of steps) {
-        document.getElementById('travel-steps').appendChild(stepEl);
-    }
-
+    document.getElementById('travel-steps').innerHTML = `[${travel.map(step => `[${step.x}-${step.y}-${step.scale}]`).join(", ")}]`;
 
     const show_current_idx = _ => {
-        const current = current_idx;
-        //remove previous
-        document.getElementById('travel-steps')
-                .querySelectorAll('div')
-                .forEach(item => item.classList.remove("active"));
+        document.getElementById('current-step').innerHTML = current_idx >= 0 ? `Current: ${current_idx}` : "";
+    }
 
-        const currentEL = document.getElementById('travel-steps').querySelectorAll(`.step-container:nth-child(${current+1})`)[0];
-        currentEL.classList.add("active");
-        
-    }
-    
     const show_current_in_network = current_idx => {
-        let currentSnapshot = travel[current_idx];
-         
-        network.moveTo({ ...currentSnapshot, animation: true });
+        network.moveTo({ ...travel[current_idx], animation: true });
     }
-    
+
     const prev = _ => {
         current_idx = (current_idx == 0) ? (travel.length - 1) : (current_idx - 1) % travel.length;
         show_current_in_network(current_idx);
@@ -58,11 +23,11 @@ if (travel && travel.length) { //solo si tenemos un travel que seguir ¯\_(ツ)_
         show_current_in_network(current_idx);
         show_current_idx(); 
     }
-    
+
 
     document.getElementById('prev-btn').addEventListener("click", prev);
     document.getElementById('next-btn').addEventListener("click", next);
 } else {
-    document.getElementById('prev-btn').style.display="none";
-    document.getElementById('next-btn').style.display="none";
+    document.getElementById('prev-btn').style.display = "none";
+    document.getElementById('next-btn').style.display = "none";
 }

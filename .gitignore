@@ -1,6 +1,7 @@
 **/node_modules
 dist/main.js
 src/imgs/*
+tmp/*/*
 dist/img/*
 zips/*
 
@@ -13,3 +14,4 @@ dist/fonts/fontawesome-webfont.eot
 dist/fonts/fontawesome-webfont.ttf
 dist/fonts/fontawesome-webfont.woff
 dist/fonts/fontawesome-webfont.woff2
+
