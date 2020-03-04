@@ -2,20 +2,25 @@
 const travel = require('./data/travel.json');
 
 const generateStepPanel = snapshot => {
-    let step_container = document.createElement("div");
+    const step_container = document.createElement("div");
     step_container.classList.add("step-container");
 
-    let text = document.createElement("div");
+    const text = document.createElement("div");
     text.classList.add("text-container");
     text.innerHTML = `<div>x:${snapshot.position.x.toFixed(2)}</div>
                       <div>y:${snapshot.position.y.toFixed(2)}</div>
                       <div>scale:${snapshot.scale.toFixed(2)}</div>`;
-
-    let image = document.createElement("img");
+    
+    const image_container = document.createElement("div");
+    image_container.classList.add("image-container");
+    
+    const image = document.createElement("img");
     image.src=snapshot.img;
 
+    image_container.appendChild(image);
+
     step_container.appendChild(text);
-    step_container.appendChild(image);
+    step_container.appendChild(image_container);
     
     return step_container;
 };

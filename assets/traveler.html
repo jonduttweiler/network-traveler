@@ -35,7 +35,6 @@
         
         .navigation-buttons{
             text-align: center;
-            padding: 12px;
         }
 
         .step-container {
@@ -45,7 +44,7 @@
             padding: 20px 12px;
             margin: 8px 0px;
             border: 1px solid transparent;
-            height: 80px;
+            height: 120px;
         }
 
         .step-container:hover {
@@ -55,10 +54,14 @@
         .step-container.active {
             border: 1px solid #3DE058;
         }
+
+        .step-container .image-container {
+            display: flex;
+        }
         
         .step-container img {
             border: 1px solid #ccc;
-            width: 150px;
+            width: 100%;
             height: auto;
             flex-shrink: 0;
             background-color:white;
@@ -80,9 +83,15 @@
 
     <div class="navigation-container">
         <div class="navigation-buttons">
-            <button id="fit-btn">Ajustar</button>
-            <button id="prev-btn">Anterior</button>
-            <button id="next-btn">Siguiente</button>
+            <button id="fit-btn" class="btn btn-sm btn-info" title="Ajustar">
+                <i class="fas fa-fw fa-expand"></i>
+            </button>
+            <button id="prev-btn" class="btn btn-sm btn-info" title="Anterior">
+                <i class="fas fa-fw fa-caret-left"></i>
+            </button>
+            <button id="next-btn" class="btn btn-sm btn-info" title="Siguiente">
+                <i class="fas fa-fw fa-caret-right"></i>
+            </button>
         </div>
         <div id="travel-steps"></div>
     </div>
