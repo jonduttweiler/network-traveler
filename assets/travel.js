@@ -36,15 +36,19 @@ if (travel && travel.length) { //solo si tenemos un travel que seguir ¯\_(ツ)_
 
 
     const show_current_idx = _ => {
+        const travelStepsEl = document.querySelector("#travel-steps");
         const current = current_idx;
-        //remove previous
-        document.getElementById('travel-steps')
-                .querySelectorAll('div')
-                .forEach(item => item.classList.remove("active"));
+        //remove previous active
+        travelStepsEl.querySelectorAll('div.step-container').forEach(item => item.classList.remove("active"));
 
-        const currentEL = document.getElementById('travel-steps').querySelectorAll(`.step-container:nth-child(${current+1})`)[0];
+        const currentEL = travelStepsEl.querySelector(`.step-container:nth-child(${current+1})`);
         currentEL.classList.add("active");
+
+        const offsetFirstChild = travelStepsEl.querySelector(`.step-container:nth-child(1)`).offsetTop;
         
+        const offset = currentEL.offsetTop - offsetFirstChild; 
+        travelStepsEl.scroll({top:offset,behavior:"smooth"})
+    
     }
 
     const show_current_in_network = current_idx => {
