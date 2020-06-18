@@ -54,11 +54,11 @@ function destPath(dist_dir,srcPath){
  * @param {*} target_dir 
  * @returns Promise that resolve with filepath of downloaded resource
  */
+//TODO: Usar axios, lo unico que hace es descargar una imagen en un directorio
 function downloadImg(url,target_dir){
     return new Promise((resolve,reject) => {
     https.get(url, res => {
         let extension = mime.extension(res.headers["content-type"]);
-
         if (res.statusCode === 200) {
             let data = new Stream(); 
             res.on('data', chunk => data.push(chunk))
