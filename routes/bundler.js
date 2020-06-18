@@ -10,28 +10,32 @@ const download_files = require('../download_images').process;
 
 const WEBPACK_PATH = "/home/jduttweiler/network-traveler/node_modules/.bin/webpack";
 
+const generateID = require("../utils/id_generator");
 
+const src_dir = id => path.join(".", "tmp", "src", id);
+const dist_dir = id => path.join(".", "tmp", "dist", id);
+
+const copyFolder = (src, dest) => { //TODO: Reemplazar esto por fs, no depender del srv donde se va a ejecutar
+    return execute('cp', ['-r', src, dest]);
+}
 
 router.post('/bundle', async (req, res, next) => {
-    const id = new Date().getTime(); //TODO: tener en cuenta que esto no va a funcionar en multi-threads
+
+    const { network, travel = [] } = req.body;
+
+    const id = generateID();
+    const src = src_dir(id); 
+    const dist = dist_dir(id);
 
     try {
-        const network = req.body.network;
-        const travel = req.body.travel || [];
-
-        const id = new Date().getTime();
-        const src = path.join(src_dir, `${id}`); //estas son las carpetas del req que estamos procesando
-        const dist = path.join(dist_dir, `${id}`); //estas son las carpetas del req que estamos procesando
-
         await copyFolder("./assets", src);
         await makeSrcData(src, network, travel);
         await makeSrcDataImages(src, network);
 
-        await bundle_it(src, dist);
+        await bundleIt(src, dist);
 
         const zipped = new admZip();
         zipped.addLocalFolder(dist);
-        remove_generated_files(id);
 
         res.writeHead(200, [['Content-Type', 'application/zip']]);
         return res.end(zipped.toBuffer());
@@ -39,34 +43,33 @@ router.post('/bundle', async (req, res, next) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({ err });
-        remove_generated_files(id); //si es que existen
+    } finally {
+        //await fs.promises.rmdir(src,{ recursive: true });
+        //await fs.promises.rmdir(dist,{ recursive: true });
     }
 
 });
-const src_dir = path.join(".", "tmp", "src")
-const dist_dir = path.join(".", "tmp", "dist")
-
 
 
 const makeSrcData = async (src, network, travel) => {
-    const src_data = path.join(src, "data");
-    fs.mkdirSync(src_data);
-    writejson(network, `${src_data}/network.json`);
-    writejson(travel, `${src_data}/travel.json`);
+    const data_path = path.join(src, "data");
+    await fs.promises.mkdir(data_path);
+    await fs.promises.writeFile(`${data_path}/network.json`, JSON.stringify(network, null, 3));
+    await fs.promises.writeFile(`${data_path}/travel.json`, JSON.stringify(travel, null, 3));
     return;
 }
 
 const makeSrcDataImages = async (src, network) => {
     const src_img = path.join(src, "imgs");
     const dist_dir = "./img";
-    fs.mkdirSync(src_img);
-
+    await fs.promises.mkdir(src_img);
+    
     //OJO CON ESTE QUE ACTUALIZA LAS REFERENCIAS DEL NETWORK! DEBERIAN SER DOS METODOS SEPARADOS!!
     await download_files(network, src_img, dist_dir);
 }
 
 
-const bundle_it = (src_dir, output_dir) => {
+const bundleIt = (src_dir, output_dir) => {
     return execute(WEBPACK_PATH,
         [
             '--config', `webpack.config.js`,
@@ -74,22 +77,6 @@ const bundle_it = (src_dir, output_dir) => {
             '--output-path', `${output_dir}`
         ]
     );
-}
-
-const copyFolder = (src, dest) => { //TODO: Reemplazar esto por fs, no depender del srv donde se va a ejecutar
-    return execute('cp', ['-r', src, dest]);
-}
-
-const remove_generated_files = id => {
-    rm(`tmp/src/${id}`);
-    rm(`tmp/dist/${id}`);
-
-}
-
-const rm = (dir) => { //TODO: Reemplazar esto por fs, no depender del srv donde se va a ejecutar
-    if (dir.startsWith("tmp")) {
-        return execute('rm', ['-r', dir]);
-    }
 }
 
 const execute = (command, args) => {
@@ -112,13 +99,5 @@ const execute = (command, args) => {
   }
   
   
-  function writejson(network, pathtofile) {
-    fs.writeFileSync(pathtofile, JSON.stringify(network, null, 3));
-  }
-  
-  
-
-
-
 
 module.exports = router;
