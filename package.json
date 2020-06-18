@@ -2,35 +2,30 @@
   "name": "traveling_networks",
   "version": "1.0.0",
   "description": "\"This project allows you to load a network visjs and travel snapshots in a certain order\"",
+  "keywords": ["visjs","network"],
+  "author": "Jonatan E. Duttweiler <jonatanduttweiler@gmail.com>",
   "main": "api.js",
+  "dependencies": {
+    "adm-zip": "^0.4.14",
+    "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
+    "mime-types": "^2.1.27",
+    "nodemon": "^2.0.4",
+    "vis-network": "~7.3.6"
+  },
   "scripts": {
     "start": "node api.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
     "loopdev": "nodemon api.js"
   },
-  "keywords": [
-    "visjs",
-    "network"
-  ],
-  "author": "Jonatan E. Duttweiler <jonatanduttweiler@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.4.2",
-    "file-loader": "^4.2.0",
-    "style-loader": "^1.0.0",
-    "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
-  },
-  "dependencies": {
-    "adm-zip": "^0.4.14",
-    "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
-    "fs-extra": "^8.1.0",
-    "mime-types": "^2.1.24",
-    "nodemon": "^2.0.4",
-    "vis-network": "^7.3.6"
+    "css-loader": "^3.6.0",
+    "file-loader": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   }
 }

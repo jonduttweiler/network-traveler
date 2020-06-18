@@ -3,15 +3,13 @@ const APP_PORT = 3000;
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
 const { spawn } = require('child_process');
 const download_files = require('./download_images').process;
 const admZip = require('adm-zip');
 
-
-var app = express();
+const app = express();
 app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
+app.use(express.urlencoded({extended: true, limit: '50mb'}));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,11 +23,11 @@ const src_dir =  path.join(".","tmp","src")
 const dist_dir = path.join(".","tmp","dist") 
 
 app.post('/bundle', async (req, res, next) => {
-  const id = new Date().getTime();
+  const id = new Date().getTime(); //TODO: tener en cuenta que esto no va a funcionar en multi-threads
 
   try {
-    let network = req.body.network;
-    let travel = req.body.travel || [];
+    const network = req.body.network;
+    const travel = req.body.travel || [];
 
     const id = new Date().getTime();
     const src = path.join(src_dir, `${id}`); //estas son las carpetas del req que estamos procesando
