@@ -8,7 +8,7 @@ const { spawn } = require('child_process');
 
 const download_files = require('../download_images').process;
 
-const WEBPACK_PATH = "/home/jduttweiler/network-traveler/node_modules/.bin/webpack";
+const WEBPACK_PATH = path.resolve("node_modules/.bin/webpack");
 
 const generateID = require("../utils/id_generator");
 
@@ -44,8 +44,8 @@ router.post('/bundle', async (req, res, next) => {
         console.log(err);
         res.status(500).json({ err });
     } finally {
-        //await fs.promises.rmdir(src,{ recursive: true });
-        //await fs.promises.rmdir(dist,{ recursive: true });
+        await fs.promises.rmdir(src,{ recursive: true });
+        await fs.promises.rmdir(dist,{ recursive: true });
     }
 
 });
@@ -70,13 +70,11 @@ const makeSrcDataImages = async (src, network) => {
 
 
 const bundleIt = (src_dir, output_dir) => {
-    return execute(WEBPACK_PATH,
-        [
+    return execute(WEBPACK_PATH,[
             '--config', `webpack.config.js`,
             '--entry', `./${src_dir}/app.js`,
             '--output-path', `${output_dir}`
-        ]
-    );
+        ]);
 }
 
 const execute = (command, args) => {

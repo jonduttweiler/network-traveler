@@ -35,9 +35,7 @@ module.exports = {
                         outputPath: 'img',
                         publicPath: 'img'
                     }
-                }
-
-                ],
+                }],
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
