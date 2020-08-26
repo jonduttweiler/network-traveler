@@ -1,8 +1,11 @@
 {
-  "name": "traveling_networks",
-  "version": "1.0.0",
+  "name": "network_exporter",
+  "version": "0.0.0",
   "description": "\"This project allows you to load a network visjs and travel snapshots in a certain order\"",
-  "keywords": ["visjs","network"],
+  "keywords": [
+    "visjs",
+    "network"
+  ],
   "author": "Jonatan E. Duttweiler <jonatanduttweiler@gmail.com>",
   "main": "api.js",
   "dependencies": {
