@@ -5,7 +5,7 @@ const generateStepPanel = snapshot => {
     const step_container = document.createElement("div");
     step_container.classList.add("step-container");
 
-    const text = document.createElement("div");
+    /*const text = document.createElement("div");
     text.classList.add("text-container");
     text.innerHTML = `<div>x:${snapshot.position.x.toFixed(2)}</div>
                       <div>y:${snapshot.position.y.toFixed(2)}</div>
@@ -20,8 +20,10 @@ const generateStepPanel = snapshot => {
     image_container.appendChild(image);
 
     step_container.appendChild(text);
-    step_container.appendChild(image_container);
-    
+    step_container.appendChild(image_container);*/
+
+    step_container.style.backgroundImage = "url('" + snapshot.img + "')";
+
     return step_container;
 };
 
