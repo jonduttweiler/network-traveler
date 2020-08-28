@@ -10,6 +10,7 @@
   "main": "api.js",
   "dependencies": {
     "adm-zip": "^0.4.16",
+    "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "css-loader": "^4.2.2",
     "express": "^4.17.1",

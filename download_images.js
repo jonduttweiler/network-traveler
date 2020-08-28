@@ -1,9 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const Stream = require('stream').Transform;
-const mime = require('mime-types');
+const axios = require('axios');
 const crypto = require('crypto');
+const { extension } = require("mime-types");
 
 /**
  * Download images and update network references
@@ -13,31 +12,29 @@ async function download_network_images(network, src_dir, dist_dir) {
     await download_groups_imgs(network, src_dir, dist_dir);
 }
 
-
 async function download_nodes_imgs(network, src_dir, dist_dir) {
-    let nodes = network.nodes.filter(group => group.shape === "image");
-    for (let node of nodes) {
+    const nodes = network.nodes.filter(group => group.shape === "image");
+    for (const node of nodes) {
         if (node.image) {
-            let filename = await downloadImg(node.image, src_dir);
+            const filename = await downloadImg(node.image, src_dir);
             if (filename) {
                 node.image = destPath(dist_dir, filename);
-            } //else set broken imgs?
+            } 
         };
     }
 }
 
 async function download_groups_imgs(network, src_dir, dist_dir) {
-    let groups = Object.keys(network.options.groups)
+    const groups = Object.keys(network.options.groups)
         .map(key => ({ ...network.options.groups[key], name: key }))
         .filter(group => group.shape === "image");
 
-    for (let group of groups) {
+    for (const group of groups) {
         if (group.image) {
-            let filename = await downloadImg(group.image, src_dir);
+            const filename = await downloadImg(group.image, src_dir);
             if (filename) {
                 network.options.groups[group.name].image = destPath(dist_dir, filename);
-
-            } //else set broken imgs?
+            }
         };
     }
 }
@@ -50,31 +47,30 @@ function destPath(dist_dir, srcPath) {
 /**
  * 
  * @param {*} url 
- * @param {*} target_dir 
+ * @param {*} targetDir 
  * @returns Promise that resolve with filepath of downloaded resource
  */
-//TODO: Usar axios, lo unico que hace es descargar una imagen en un directorio
-function downloadImg(url, target_dir) {
-    return new Promise((resolve, reject) => {
-        https.get(url, res => {
-            let extension = mime.extension(res.headers["content-type"]);
-            if (res.statusCode === 200) {
-                let data = new Stream();
-                res.on('data', chunk => data.push(chunk))
-                    .on('end', _ => {
-                        let hash = crypto.createHash('sha256').update(url).digest('hex');
-                        let filename = `${hash}.${extension}`;
-                        let filepath = path.join(target_dir, filename);
-                        fs.writeFileSync(filepath, data.read());
-                        resolve(filepath);
-                    });
-            } else {
-                reject({ code: res.statusCode }); //add more info
-            }
-        });
-
-    });
-}
+async function downloadImg(url, targetDir) {
+    try {
+      const response = await axios.get(url, { responseType: "stream" });
+      const digest = crypto.createHash("md5").update(url).digest("hex");
+      const ext = extension(response.headers["content-type"]);
+      const targetName = `${digest}.${ext}`;
+      const targetPath = path.join(targetDir, targetName);
+      const writer = fs.createWriteStream(targetPath);
+      response.data.pipe(writer);
+  
+      return new Promise((resolve, reject) => {
+        writer.on('finish', resolve(targetPath));
+        writer.on('error', reject);
+      });
+  
+    } catch (err) {
+      console.log(err);
+      return Promise.reject(err);
+    }
+  }
+  
 
 module.exports = {
     download_network_images
