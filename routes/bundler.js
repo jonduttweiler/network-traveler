@@ -7,28 +7,35 @@ const admZip = require('adm-zip');
 const { spawn } = require('child_process');
 
 const download_files = require('../download_images').process;
-
-const WEBPACK_PATH = path.resolve("node_modules/.bin/webpack");
-
 const generateID = require("../utils/id_generator");
 
-const src_dir = id => path.join(".", "tmp", "src", id);
-const dist_dir = id => path.join(".", "tmp", "dist", id);
+const { WEBPACK_PATH, ASSETS_PATH, TEMP_FILES_PATH } = require("../config/default");
 
-const copyFolder = (src, dest) => { //TODO: Reemplazar esto por fs, no depender del srv donde se va a ejecutar
-    return execute('cp', ['-r', src, dest]);
+
+async function createSrcDir(id){
+  const targetPath = path.join(TEMP_FILES_PATH, "src", id);
+  await fs.promises.mkdir(targetPath, { recursive: true });
+  return targetPath;
 }
+async function createDistDir(id){
+  const targetPath = path.join(TEMP_FILES_PATH, "dist", id);
+  await fs.promises.mkdir(targetPath, { recursive: true });
+  return targetPath;
+}
+
+//TODO: Reemplazar esto por fs, no depender del srv donde se va a ejecutar
+const copyFolderContent = (src, dest) => execute('cp', ['-r', `${src}/.`, `${dest}/`]);
 
 router.post('/bundle', async (req, res, next) => {
 
     const { network, travel = [] } = req.body;
 
     const id = generateID();
-    const src = src_dir(id); 
-    const dist = dist_dir(id);
+    const src = await createSrcDir(id);
+    const dist = await createDistDir(id);
 
     try {
-        await copyFolder("./assets", src);
+        await copyFolderContent(ASSETS_PATH, src);
         await makeSrcData(src, network, travel);
         await makeSrcDataImages(src, network);
 
@@ -69,12 +76,15 @@ const makeSrcDataImages = async (src, network) => {
 }
 
 
-const bundleIt = (src_dir, output_dir) => {
-    return execute(WEBPACK_PATH,[
-            '--config', `webpack.config.js`,
-            '--entry', `./${src_dir}/app.js`,
-            '--output-path', `${output_dir}`
-        ]);
+/**
+ * Need absolute paths in both cases
+ * @param {*} absolutePathSrcDir 
+ * @param {*} output_dir 
+ */
+const bundleIt = (absolutePathSrcDir, relativePathOutputDir) => {
+
+    const entry = `${absolutePathSrcDir}/app.js`;
+    return execute(WEBPACK_PATH,['--config', `webpack.config.js`,'--entry', entry,'--output-path', `${relativePathOutputDir}`]);
 }
 
 const execute = (command, args) => {
