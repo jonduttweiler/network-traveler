@@ -6,11 +6,42 @@ const path = require('path');
 const admZip = require('adm-zip');
 const { spawn } = require('child_process');
 
-const { download_network_images } = require('../download_images');
+const { download_network_images } = require('../utils/download_images');
 const generateID = require("../utils/id_generator");
 
 const { WEBPACK_PATH, ASSETS_PATH, TEMP_FILES_PATH } = require("../config/default");
 
+
+router.post('/bundle', async (req, res) => {
+
+  const { network, travel = [] } = req.body;
+  try {
+    const id = generateID();
+    const src = await createSrcDir(id);
+    const dist = await createDistDir(id);
+
+    await copyAssets(src);
+    await makeSrcData(src, network, travel);
+    await makeSrcDataImages(src, network);
+
+    await bundleIt(src, dist);
+
+    const zipped = new admZip();
+    zipped.addLocalFolder(dist);
+
+    res.writeHead(200, [['Content-Type', 'application/zip']]);
+    return res.end(zipped.toBuffer());
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err });
+  } finally {
+    //clear temp files
+    await fs.promises.rmdir(src,{ recursive: true });
+    await fs.promises.rmdir(dist,{ recursive: true });
+  }
+
+});
 
 async function createSrcDir(id) {
   const targetPath = path.join(TEMP_FILES_PATH, "src", id);
@@ -32,38 +63,6 @@ async function createDistDir(id){
   await fs.promises.mkdir(targetPath, { recursive: true });
   return targetPath;
 }
-
-router.post('/bundle', async (req, res, next) => {
-
-  const { network, travel = [] } = req.body;
-  try {
-
-    const id = generateID();
-    const src = await createSrcDir(id);
-    const dist = await createDistDir(id);
-
-    await copyAssets(src);
-    await makeSrcData(src, network, travel);
-    await makeSrcDataImages(src, network);
-
-    await bundleIt(src, dist);
-
-    const zipped = new admZip();
-    zipped.addLocalFolder(dist);
-
-    res.writeHead(200, [['Content-Type', 'application/zip']]);
-    return res.end(zipped.toBuffer());
-
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ err });
-  } finally {
-    //await fs.promises.rmdir(src,{ recursive: true });
-    //await fs.promises.rmdir(dist,{ recursive: true });
-  }
-
-});
-
 
 const makeSrcData = async (src, network, travel) => {
     const data_path = path.join(src, "data");
