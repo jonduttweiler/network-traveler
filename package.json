@@ -1,6 +1,6 @@
 {
   "name": "network_exporter",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "\"This project allows you to load a network visjs and travel snapshots in a certain order\"",
   "keywords": [
     "visjs",
