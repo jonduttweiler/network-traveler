@@ -6,54 +6,61 @@ const path = require('path');
 const admZip = require('adm-zip');
 const { spawn } = require('child_process');
 
-const download_files = require('../download_images').process;
+const { download_network_images } = require('../download_images');
 const generateID = require("../utils/id_generator");
 
 const { WEBPACK_PATH, ASSETS_PATH, TEMP_FILES_PATH } = require("../config/default");
 
 
-async function createSrcDir(id){
+async function createSrcDir(id) {
   const targetPath = path.join(TEMP_FILES_PATH, "src", id);
   await fs.promises.mkdir(targetPath, { recursive: true });
   return targetPath;
 }
+
+async function copyAssets(targetDir){
+  const assetsFilenames = await fs.promises.readdir(ASSETS_PATH);
+  for(const filename of assetsFilenames){
+    const source = path.join(ASSETS_PATH, filename);
+    const target = path.join(targetDir, filename);
+    await fs.promises.copyFile(source, target);
+  }
+}
+
 async function createDistDir(id){
   const targetPath = path.join(TEMP_FILES_PATH, "dist", id);
   await fs.promises.mkdir(targetPath, { recursive: true });
   return targetPath;
 }
 
-//TODO: Reemplazar esto por fs, no depender del srv donde se va a ejecutar
-const copyFolderContent = (src, dest) => execute('cp', ['-r', `${src}/.`, `${dest}/`]);
-
 router.post('/bundle', async (req, res, next) => {
 
-    const { network, travel = [] } = req.body;
+  const { network, travel = [] } = req.body;
+  try {
 
     const id = generateID();
     const src = await createSrcDir(id);
     const dist = await createDistDir(id);
 
-    try {
-        await copyFolderContent(ASSETS_PATH, src);
-        await makeSrcData(src, network, travel);
-        await makeSrcDataImages(src, network);
+    await copyAssets(src);
+    await makeSrcData(src, network, travel);
+    await makeSrcDataImages(src, network);
 
-        await bundleIt(src, dist);
+    await bundleIt(src, dist);
 
-        const zipped = new admZip();
-        zipped.addLocalFolder(dist);
+    const zipped = new admZip();
+    zipped.addLocalFolder(dist);
 
-        res.writeHead(200, [['Content-Type', 'application/zip']]);
-        return res.end(zipped.toBuffer());
+    res.writeHead(200, [['Content-Type', 'application/zip']]);
+    return res.end(zipped.toBuffer());
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ err });
-    } finally {
-        await fs.promises.rmdir(src,{ recursive: true });
-        await fs.promises.rmdir(dist,{ recursive: true });
-    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ err });
+  } finally {
+    //await fs.promises.rmdir(src,{ recursive: true });
+    //await fs.promises.rmdir(dist,{ recursive: true });
+  }
 
 });
 
@@ -72,7 +79,7 @@ const makeSrcDataImages = async (src, network) => {
     await fs.promises.mkdir(src_img);
     
     //OJO CON ESTE QUE ACTUALIZA LAS REFERENCIAS DEL NETWORK! DEBERIAN SER DOS METODOS SEPARADOS!!
-    await download_files(network, src_img, dist_dir);
+    await download_network_images(network, src_img, dist_dir);
 }
 
 

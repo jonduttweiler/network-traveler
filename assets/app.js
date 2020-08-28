@@ -3,8 +3,8 @@ import './traveler.html';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './css/font-awesome/font-awesome.min.css';
-import './css/vis-network/vis-network.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'vis-network/dist/vis-network.min.css';
 import './travel.js';
 
 
