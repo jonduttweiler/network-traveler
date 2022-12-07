@@ -13,7 +13,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "css-loader": "^4.2.2",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "file-loader": "^6.0.0",
     "mime-types": "^2.1.27",
     "vis-network": "~7.3.6"
